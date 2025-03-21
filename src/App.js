@@ -52,11 +52,13 @@ const Quiz = ({ questions }) => {
   // KODUNUZ BURAYA GELECEK
   const [index, setIndex] = useState(0);
   const [answerIndex, setAnswerIndex] = useState(null);
+  const [correctAnswer, setCorrectAnswer] = useState(0);
 
   const handleClick = (id) => {
     setAnswerIndex(id); // Seçilen cevabı güncelle
     if (id === questions[index].correct) {
       alert("Doğru cevap! 👍"); // Doğru cavap durumu
+      setCorrectAnswer((prev) => prev + 1);
     } else {
       alert(
         `Yanlış cevap! Doğru cevap: ${
@@ -93,6 +95,10 @@ const Quiz = ({ questions }) => {
             );
           })}
         </div>
+        <p className="text-lg font-medium text-green-600 mt-4">
+          Correct answers out of {questions.length} are {correctAnswer} correct
+        </p>
+
         <br />
         <button
           onClick={() => {
